@@ -28,12 +28,14 @@ let circularProgress = document.querySelector(".circular-progress"),
     controls = document.querySelector(".controls"),
     btnStart = document.querySelector(".button");
 
-let speed = 1;
+let speed = 1,
+    isPaused = false,
+    cicle = 1;
+
 
 let min = 25, sec = 0;
-    
-function start(){
 
+function preStarter(){
     const btnPause = document.createElement('button');
     btnPause.className = 'button btnPause';
     btnPause.innerHTML = 'Pausa';
@@ -47,9 +49,16 @@ function start(){
     btnStart.style.display = "none";
     controls.appendChild(btnPause);
     controls.appendChild(btnRestart);
+
+    start();
+}
     
+function start(){
+
     let progressStartValue = 0,
-    progressEndValue = 1500, //25min = 1500seg
+        progressEndValue = 1500; //25min = 1500seg
+    
+    min = 25
     isPaused = false;
 
     let progress = setInterval(() => {
@@ -87,14 +96,15 @@ function start(){
         
     }, speed);
 
+
 }
 
 function pause(){
-    isPaused=true
+    isPaused=true;
     
     const btnResume = document.querySelector(".btnPause");
     btnResume.innerHTML = 'Reanudar';
-    btnResume.setAttribute("onclick", "resume()")
+    btnResume.setAttribute("onclick", "resume()");
 }
 
 function resume(){
@@ -110,12 +120,12 @@ function restart(){
 }
 
 function breakTime(){
-    var cicle = 1;
-    
-    if(cicle < 5){
+    console.log(cicle);
+
+    if(cicle < 4){
         min = 5
-        progressStartValue = 0;
-        progressEndValue = 300;
+        let progressStartValue = 0;
+        let progressEndValue = 300;
         let progress = setInterval(() => {
 
             if(!isPaused){
@@ -140,11 +150,12 @@ function breakTime(){
 
                 if(progressStartValue == progressEndValue){
                     clearInterval(progress);
+                    start();
                 }    
             }
         }, speed);
 
         cicle++;
-        start();
+        
     }
 }
