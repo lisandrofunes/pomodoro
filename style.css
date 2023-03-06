@@ -43,6 +43,7 @@
 [data-theme="--theme9"]{
     --background:#30343F;
     --progres: #788099;
+    --breakTime: rgb(255, 0, 0);
 }
 
 :root {

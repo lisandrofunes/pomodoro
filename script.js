@@ -19,7 +19,6 @@ function selectTheme(){
 setTheme(localStorage.getItem('theme'))
 
 
-
 let circularProgress = document.querySelector(".circular-progress"),
     progressValue = document.querySelector(".progress-value"),
     // dot = document.querySelector(".dot"),
@@ -29,10 +28,7 @@ let circularProgress = document.querySelector(".circular-progress"),
     controls = document.querySelector(".controls"),
     btnStart = document.querySelector(".button");
 
-let progressStartValue = 0,
-    progressEndValue = 1500, //25min = 1500seg
-    speed = 1,
-    isPaused = false;
+let speed = 1;
 
 let min = 25, sec = 0;
     
@@ -52,6 +48,8 @@ function start(){
     controls.appendChild(btnPause);
     controls.appendChild(btnRestart);
     
+    let progressStartValue = 0,
+    progressEndValue = 1500, //25min = 1500seg
     isPaused = false;
 
     let progress = setInterval(() => {
@@ -68,6 +66,7 @@ function start(){
             }
             sec--;
             if (min === 0) {
+                
                 // hourValue--;
             }
 
@@ -81,6 +80,7 @@ function start(){
 
             if(progressStartValue == progressEndValue){
                 clearInterval(progress);
+                breakTime();
             }    
 
         }
@@ -106,6 +106,45 @@ function resume(){
 }
 
 function restart(){
-    location.reload()
+    location.reload();
+}
 
+function breakTime(){
+    var cicle = 1;
+    
+    if(cicle < 5){
+        min = 5
+        progressStartValue = 0;
+        progressEndValue = 300;
+        let progress = setInterval(() => {
+
+            if(!isPaused){
+                progressStartValue++;
+
+                if (sec === 0) {
+                    min--;
+                    sec = 60;
+                }
+                sec--;
+                if (min === 0) {
+                    // hourValue--;
+                }
+
+                seconds.textContent = sec < 10 ? `0${sec}` : sec;
+                minutes.textContent = min < 10 ? `0${min}` : min;
+
+                // progressValue.textContent = `${progressStartValue}%`
+
+                //360°/60=6 por segundo aumenta 6° - 360°/(5*60)=1.2
+                circularProgress.style.background = `conic-gradient(var(--breakTime) ${progressStartValue * 1.2}deg, transparent 0deg)`
+
+                if(progressStartValue == progressEndValue){
+                    clearInterval(progress);
+                }    
+            }
+        }, speed);
+
+        cicle++;
+        start();
+    }
 }
