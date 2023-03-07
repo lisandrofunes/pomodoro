@@ -1,54 +1,65 @@
 [data-theme="--theme1"]{
-    --background:#F1F7ED;
-    --progres: #bdd9aa;
-    --background:#e6e6e6;
+    --background:#d9e1d4;
+    --progres: #93c175;
+    --breakTime: #a06cd5;
 }
 
 [data-theme="--theme2"]{
-    
     --background:#FFE381;
     --progres: #cbaf4d;
+    --breakTime: #2a9a5d;
 }
 
 [data-theme="--theme3"]{
     --background:#E8B4BC;
     --progres: #ae6b75;
+    --breakTime: #51948a;
 }
 
 [data-theme="--theme4"]{
     --background:#60d394;
     --progres: #2a9a5d;
+    --breakTime: #d9e1d4;
 }
 
 [data-theme="--theme5"]{
     --background:#A3CEF1;
     --progres: #5e91bb;
+    --breakTime: #a16e44;
 }
 
 [data-theme="--theme6"]{
     --background:#FF7F50;
     --progres: #ffbca4;
+    --breakTime: #0080af;
 }
 
 [data-theme="--theme7"]{
     --background:#a06cd5;
     --progres: #c8aae7;
+    --breakTime: #60d394;
 }
 
 [data-theme="--theme8"]{
     --background:#456990;
     --progres: #bfcfe1;
+    --breakTime: #ba966f;
 }
 
 [data-theme="--theme9"]{
     --background:#30343F;
     --progres: #788099;
-    --breakTime: rgb(255, 0, 0);
+    --breakTime: #2a9a5d;
 }
 
 :root {
     --shadow: -6px -6px 6px hsla(0, 0%, 100%, 0.102), 6px 6px 6px rgba(0, 0, 0, 0.102);
     --shadow-inset: inset -6px -6px 6px #ffffff1a, inset 6px 6px 6px #0000001a;
+
+}
+
+body{
+    font-family: 'Quicksand', sans-serif;
 }
 
 .container-bg {
@@ -64,6 +75,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    gap: 3em;
     /* background-color: var(--dark); */
 }
 
@@ -75,8 +87,14 @@
 
 .circular-progress {
     position: relative;
-    height: 250px;
-    width: 250px;
+    /* height: 250px;
+    width: 250px; */
+    height: 26vw;
+    width: 26vw;
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 300px;
+    min-height: 300px;
     border-radius: 50%;
     /* background: conic-gradient(var(--progres) 3.6deg, transparent 0deg); */
     display: flex;
@@ -90,8 +108,15 @@
 .circular-progress::before {
     content: "";
     position: absolute;
-    height: 210px;
-    width: 210px;
+    /* height: 210px;
+    width: 210px; */
+    height: 23vw;
+    width: 23vw;
+    max-width: 440px;
+    max-height: 440px;
+    min-width: 260px;
+    min-height: 260px;
+
     border-radius: 50%;
     background-color: var(--background);
     box-shadow: var(--shadow);
@@ -103,27 +128,9 @@
 
 .circular-progress span{
     color: var(--progres);
-}
-
-.dot {
-    height: 125px;
-    width: 125px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform-origin: bottom left;
-    transition: .1s linear;
-    /* transform: rotate(45deg); */
-}
-
-.dot::before {
-    content: "";
-    position: absolute;
-    height: 20px;
-    border-radius: 50%;
-    width: 20px;
-    background: white;
-    /* box-shadow: 0 5px 10px rgb(0 0 0 / 30%); */
+    position: relative;
+    font-size: 5em;
+    font-weight: 600;
 }
 
 @keyframes rotate {
@@ -132,12 +139,6 @@
     }
   }
 
-.progress-value, .minutes, .seconds, .colon{
-    position: relative;
-    font-size: 40px;
-    font-weight: 600;
-    color: #ffffff;
-}
 
 .text {
     font-size: 30px;
@@ -169,19 +170,20 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 2em;
 }
 
 .button{
-    margin-top: 20px;
-    padding: .5em 1em;
+    padding: .2em 0;
     border-radius: 20px;
     border: none;
+    font-size: 1.5em;
     color: var(--progres);
+    font-weight: bold;
     background-color: var(--background);
     box-shadow: var(--shadow);
-    transition: 2s;
-    width: 100px;
+    transition: 1s;
+    width: 150px;
 }
 
 .button:hover{
@@ -194,3 +196,26 @@
 
 }
 
+@media screen and (max-width: 425px) {
+    .circular-progress span{
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .circular-progress span{
+        font-size: 3.5em;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .circular-progress span{
+        font-size: 4em;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .circular-progress span{
+        font-size: 5em;
+    }
+}

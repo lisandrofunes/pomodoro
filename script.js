@@ -53,52 +53,6 @@ function preStarter(){
     start();
 }
     
-// function start(){
-
-//     let progressStartValue = 0,
-//         progressEndValue = 1500; //25min = 1500seg
-    
-//     min = 25
-//     isPaused = false;
-
-//     let progress = setInterval(() => {
-
-//         if(!isPaused){
-//             progressStartValue++;
-
-//             // dot.setAttribute('style', 'animation: rotate ' + 10 + 's linear;')
-//             // dot.setAttribute('style', `transform: rotate(${progressStartValue * 3.6}deg);`)
-
-//             if (sec === 0) {
-//                 min--;
-//                 sec = 60;
-//             }
-//             sec--;
-//             if (min === 0) {
-                
-//                 // hourValue--;
-//             }
-
-//             seconds.textContent = sec < 10 ? `0${sec}` : sec;
-//             minutes.textContent = min < 10 ? `0${min}` : min;
-
-//             // progressValue.textContent = `${progressStartValue}%`
-
-//             //360°/60=6 por segundo aumenta 6° - 360°/(25*60)=0.24
-//             circularProgress.style.background = `conic-gradient(var(--progres) ${progressStartValue * 0.24}deg, transparent 0deg)`
-
-//             if(progressStartValue == progressEndValue){
-//                 clearInterval(progress);
-//                 breakTime();
-//             }    
-
-//         }
-        
-//     }, speed);
-
-
-// }
-
 function start(){
     run(0, 1500, 25, false, "progres", 0.24, 2);
 }
@@ -123,67 +77,26 @@ function restart(){
     location.reload();
 }
 
-// function breakTime(){
-//     console.log(cicle);
-
-//     if(cicle < 4){
-//         min = 5
-//         let progressStartValue = 0;
-//         let progressEndValue = 300;
-//         let progress = setInterval(() => {
-
-//             if(!isPaused){
-//                 progressStartValue++;
-
-//                 if (sec === 0) {
-//                     min--;
-//                     sec = 60;
-//                 }
-//                 sec--;
-//                 if (min === 0) {
-//                     // hourValue--;
-//                 }
-
-//                 seconds.textContent = sec < 10 ? `0${sec}` : sec;
-//                 minutes.textContent = min < 10 ? `0${min}` : min;
-
-//                 // progressValue.textContent = `${progressStartValue}%`
-
-//                 //360°/60=6 por segundo aumenta 6° - 360°/(5*60)=1.2
-//                 circularProgress.style.background = `conic-gradient(var(--breakTime) ${progressStartValue * 1.2}deg, transparent 0deg)`
-
-//                 if(progressStartValue == progressEndValue){
-//                     clearInterval(progress);
-//                     start();
-//                 }    
-//             }
-//         }, speed);
-
-//         cicle++;
-        
-//     }
-// }
 function breakTime(){
     if(cicle < 4){
         run(0, 300, 5, false, "breakTime", 1.2, 1);
         cicle++;
     }else{
         run(0, 900, 15, false, "breakTime", 0.4, 3);
-
     }
-
 }
 
 function run(startValue, endValue, minTotal, paused, color, degrees, nextFunction){
-    // console.log("run!")
+
     let progressStartValue = startValue,
         progressEndValue = endValue;
     
     min = minTotal
 
+    isPaused = paused
     let progress = setInterval(() => {
 
-        if(!paused){
+        if(!isPaused){
             progressStartValue++;
 
             if (sec === 0) {
@@ -211,11 +124,6 @@ function run(startValue, endValue, minTotal, paused, color, degrees, nextFunctio
                     case 3:
                         break;
                 }
-                // if(!end){
-                //     start();
-                // }else{
-                //     breakTime();
-                // }
             }    
         }
     }, speed);
