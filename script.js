@@ -1,19 +1,29 @@
-// function selectTheme(){
-//     var selectedValue = document.getElementById("theme-list").value;
-    
-//     const container = document.getElementById("background")
-//     container.setAttribute('style', 'background: var(' + selectedValue + ');');
-// }
+//set default theme
+if(localStorage.getItem('theme') == null ){
+    localStorage.setItem('theme', '--default');
+}
+// console.log(localStorage.getItem('theme'))
+// 
 
+var items = document.querySelectorAll(".dropdown-item"),
+    tab = [], index;
 
+// add values to the array
+for(var i = 0; i < items.length; i++){
+    tab.push(items[i].innerHTML);
+}
+
+// get selected element index
+for(var i = 0; i < items.length; i++){
+    items[i].onclick = function(){
+        setTheme(this.id)
+    };
+}
+
+//set theme
 const setTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-}
-
-function selectTheme(){
-    var selectedValue = document.getElementById("theme-list").value;
-    setTheme(selectedValue);
 }
 
 setTheme(localStorage.getItem('theme'))
@@ -21,19 +31,19 @@ setTheme(localStorage.getItem('theme'))
 
 let circularProgress = document.querySelector(".circular-progress"),
     progressValue = document.querySelector(".progress-value"),
-    // dot = document.querySelector(".dot"),
     seconds = document.querySelector(".seconds"),
     minutes = document.querySelector(".minutes"),
-
     controls = document.querySelector(".controls"),
-    btnStart = document.querySelector(".button");
+    btnStart = document.querySelector(".button"),
+    state = document.querySelector(".state"),
 
-let speed = 1,
+    speed = 1000,
     isPaused = false,
-    cicle = 1;
-
-
-let min = 25, sec = 0;
+    isBreakTime = false,
+    isUltimateBreakTime = false,
+    cicle = 1,
+    
+    min = 25, sec = 0;
 
 function preStarter(){
     const btnPause = document.createElement('button');
@@ -54,6 +64,8 @@ function preStarter(){
 }
     
 function start(){
+    isBreakTime = false
+    updateState('En Ejecución');
     run(0, 1500, 25, false, "progres", 0.24, 2);
 }
 
@@ -63,9 +75,18 @@ function pause(){
     const btnResume = document.querySelector(".btnPause");
     btnResume.innerHTML = 'Reanudar';
     btnResume.setAttribute("onclick", "resume()");
+
+    updateState('En Pausa');
+
 }
 
 function resume(){
+    if(isUltimateBreakTime){
+        updateState('Último Descanso')
+    }else{
+        isBreakTime ? updateState('Descanso'): updateState('En Ejecución');
+    }
+
     isPaused=false;
 
     const btnPause = document.querySelector(".btnPause");
@@ -78,10 +99,15 @@ function restart(){
 }
 
 function breakTime(){
+
     if(cicle < 4){
+        isBreakTime = true;
+        updateState('Descanso');
         run(0, 300, 5, false, "breakTime", 1.2, 1);
         cicle++;
     }else{
+        isUltimateBreakTime = true;
+        updateState('Último Descanso');
         run(0, 900, 15, false, "breakTime", 0.4, 3);
     }
 }
@@ -122,9 +148,22 @@ function run(startValue, endValue, minTotal, paused, color, degrees, nextFunctio
                         breakTime();
                         break;
                     case 3:
+                        updateState('Ciclo completado');
+                        const btnPause = document.querySelector(".btnPause");
+                        btnPause.style.display = 'none';
                         break;
                 }
             }    
         }
     }, speed);
+}
+
+function updateState(text){
+    state.innerHTML = text;
+    state.animate([
+        { opacity: '0' },
+        { opacity: '.5' }
+      ], {
+        duration: 1000,
+    });
 }

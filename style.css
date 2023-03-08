@@ -1,4 +1,4 @@
-[data-theme="--theme1"]{
+[data-theme="--theme1"], [data-theme="--default"]{
     --background:#d9e1d4;
     --progres: #93c175;
     --breakTime: #a06cd5;
@@ -53,9 +53,8 @@
 }
 
 :root {
-    --shadow: -6px -6px 6px hsla(0, 0%, 100%, 0.102), 6px 6px 6px rgba(0, 0, 0, 0.102);
-    --shadow-inset: inset -6px -6px 6px #ffffff1a, inset 6px 6px 6px #0000001a;
-
+    --shadow: -4px -4px 6px hsla(0, 0%, 100%, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.102);
+    --shadow-inset: inset -4px -4px 6px hsla(0, 0%, 100%, 0.25), inset 6px 6px 6px #0000001a;
 }
 
 body{
@@ -74,9 +73,19 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     position: relative;
-    gap: 3em;
     /* background-color: var(--dark); */
+}
+
+.progres-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: inherit;
+    gap: 3em;
 }
 
 .selector{
@@ -133,11 +142,31 @@ body{
     font-weight: 600;
 }
 
+.state{
+    position: absolute;
+    top: -2em;
+    transition: 1s;
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--progres);
+    opacity: .5;
+    animation: state 1s;
+}
+
+@keyframes state {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .5;
+    }
+}
+
 @keyframes rotate {
     100% {
       transform: rotate(360deg);
     }
-  }
+}
 
 
 .text {
@@ -159,6 +188,57 @@ body{
     outline: none;
 }
 
+.dropdown-center{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    
+}
+
+.dropdown-center button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* padding: 5px; */
+    background: none;
+    border: none;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: 1s;
+}
+
+.dropdown-center button::before{
+    position: absolute;
+    content: "";
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(90deg, var(--background)50%, rgba(148,187,233,0) 50%);
+    border-radius: 50% 25% 25% 50% / 50% 0% 0% 50%;
+    z-index: 1;
+
+}
+.dropdown-center button::after{
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: var(--progres);
+    border-radius: 50%;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+/* .dropdown-center button:hover,
+.dropdown-center button:active,
+.dropdown-center button:focus-visible{
+    background-color: var(--breakTime)!important;
+} */
+
 /* .theme-selector option{
     background-color: var(--progres);
     color: var(--background);
@@ -174,31 +254,94 @@ body{
 }
 
 .button{
-    padding: .2em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: .2em 0; */
     border-radius: 20px;
     border: none;
     font-size: 1.5em;
     color: var(--progres);
     font-weight: bold;
     background-color: var(--background);
-    box-shadow: var(--shadow);
-    transition: 1s;
+    /* box-shadow: var(--shadow); */
+    /* --shadow: -4px -4px 6px hsla(0, 0%, 100%, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.102); */
+
+    /* transition: 1s; */
     width: 150px;
+    height: 50px;
+    position: relative;
+
+    animation: shadow .2s;
+    box-shadow: var(--shadow);
+
+    /* transition: transform ease 0.5s, box-shadow ease 0.5s; */
+
+    /* box-shadow: inset 0 0 10px #aaa; */
 }
+
+/* .button::after{
+    position: absolute;
+    content: "";
+    padding: .2em 0;
+    border-radius: 20px;
+    border: none;
+    width: 150px;
+    height: 50px;
+    height: inherit;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.102);
+} */
 
 .button:hover{
-    box-shadow: var(--shadow-inset);
-    transition: 2s;
+    /* transform: translateY(-5px); */
+    /* box-shadow: var(--shadow-inset); */
+    /* box-shadow: inset -4px -4px 6px hsla(0, 0%, 100%, 0.25); */
+    /* transition: 1s; */
+
+    /* box-shadow: 0 0 10px #aaa; */
+    animation: shadowIn .2s;
+    box-shadow: var(--shadow-inset)
 }
 
-.button:active{
+/* .button:active{
     box-shadow: var(--shadow);
 
+} */
+@keyframes shadow {
+    0% { box-shadow: var(--shadow-inset)}
+    50% { box-shadow: none;}
+    100% { box-shadow: var(--shadow);}
 }
+
+@keyframes shadowIn {
+    0% { box-shadow: var(--shadow);}
+    50% { box-shadow: none;}
+    100% { box-shadow: var(--shadow-inset);}
+}
+
+
+@keyframes shadowFadeIn {
+    0% { box-shadow: inset 0 0 10px rgb(255, 0, 0); }
+    50% { box-shadow: none; }
+    100% { box-shadow: 0 0 10px rgb(255, 0, 0); }
+}
+
+@keyframes shadowFadeOut {
+    0% { box-shadow: 0 0 10px #aaa; }
+    50% { box-shadow: none; }
+    100% { box-shadow: inset 0 0 10px #aaa; }
+}
+
 
 @media screen and (max-width: 425px) {
     .circular-progress span{
         font-size: 3em;
+    }
+    .state{
+        font-size: 2.5em;
+    }
+    .controls{
+        gap: 1.5em;
     }
 }
 

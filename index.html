@@ -22,7 +22,7 @@
 <body>
     <div id="background" class="container-bg">
         <div class="container">
-            <form class="selector" action="">
+            <!-- <form class="selector" action="">
                 <select class="theme-selector" name="" id="theme-list" onchange="selectTheme()">
                     <option selected>Tema</option>
                     <option value="--theme1">Mint Cream <span class="preview"></span> </option>
@@ -35,19 +35,37 @@
                     <option value="--theme8">Lapiz lazuli</option>
                     <option value="--theme9">Gunmetal</option>
                 </select>
-            </form>
+            </form> -->
 
-
-            <div class="circular-progress">
-                <span class="minutes">25</span>
-                <span class="colon">:</span>
-                <span class="seconds">00</span>
+            <div class="dropdown-center">
+                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul id="list" class="dropdown-menu">
+                  <li><a id="--theme1" class="dropdown-item">Mint Cream</a></li>
+                  <li><a id="--theme2" class="dropdown-item">Jasmine</a></li>
+                  <li><a id="--theme3" class="dropdown-item">Orchid Pink</a></li>
+                  <li><a id="--theme4" class="dropdown-item">Esmerald</a></li>
+                  <li><a id="--theme5" class="dropdown-item">Uranian Blue</a></li>
+                  <li><a id="--theme6" class="dropdown-item">Coral</a></li>
+                  <li><a id="--theme7" class="dropdown-item">Amethyst</a></li>
+                  <li><a id="--theme8" class="dropdown-item">Lapiz lazuli</a></li>
+                  <li><a id="--theme9" class="dropdown-item">Gunmetal</a></li>
+                </ul>
             </div>
 
-            <div class="controls">
-                <button class="button" onclick="preStarter()">
-                    Iniciar
-                </button>
+            <div class="progres-container">
+                <div class="state"></div>
+                
+                <div class="circular-progress">
+                    <span class="minutes">25</span>
+                    <span class="colon">:</span>
+                    <span class="seconds">00</span>
+                </div>
+
+                <div class="controls">
+                    <button class="button" onclick="preStarter()">
+                        Iniciar
+                    </button>
+                </div>
 
             </div>
 
