@@ -22,39 +22,54 @@
 <body>
     <div id="background" class="container-bg">
         <div class="container">
-            <!-- <form class="selector" action="">
-                <select class="theme-selector" name="" id="theme-list" onchange="selectTheme()">
-                    <option selected>Tema</option>
-                    <option value="--theme1">Mint Cream <span class="preview"></span> </option>
-                    <option value="--theme2">Jasmine</option>
-                    <option value="--theme3">Orchid Pink</option>
-                    <option value="--theme4">Esmerald</option>
-                    <option value="--theme5">Uranian Blue</option>
-                    <option value="--theme6">Coral</option>
-                    <option value="--theme7">Amethyst</option>
-                    <option value="--theme8">Lapiz lazuli</option>
-                    <option value="--theme9">Gunmetal</option>
-                </select>
-            </form> -->
 
-            <div class="dropdown-center">
-                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                <ul id="list" class="dropdown-menu">
-                  <li><a id="--theme1" class="dropdown-item">Mint Cream</a></li>
-                  <li><a id="--theme2" class="dropdown-item">Jasmine</a></li>
-                  <li><a id="--theme3" class="dropdown-item">Orchid Pink</a></li>
-                  <li><a id="--theme4" class="dropdown-item">Esmerald</a></li>
-                  <li><a id="--theme5" class="dropdown-item">Uranian Blue</a></li>
-                  <li><a id="--theme6" class="dropdown-item">Coral</a></li>
-                  <li><a id="--theme7" class="dropdown-item">Amethyst</a></li>
-                  <li><a id="--theme8" class="dropdown-item">Lapiz lazuli</a></li>
-                  <li><a id="--theme9" class="dropdown-item">Gunmetal</a></li>
-                </ul>
+            <div class="menu-container">
+
+                <div class="dropdown-center">
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false"></button>
+                    <ul id="list" class="dropdown-menu">
+                        <li><a id="--theme1" class="dropdown-item">Mint Cream</a></li>
+                        <li><a id="--theme2" class="dropdown-item">Jasmine</a></li>
+                        <li><a id="--theme3" class="dropdown-item">Orchid Pink</a></li>
+                        <li><a id="--theme4" class="dropdown-item">Esmerald</a></li>
+                        <li><a id="--theme5" class="dropdown-item">Uranian Blue</a></li>
+                        <li><a id="--theme6" class="dropdown-item">Coral</a></li>
+                        <li><a id="--theme7" class="dropdown-item">Amethyst</a></li>
+                        <li><a id="--theme8" class="dropdown-item">Lapiz lazuli</a></li>
+                        <li><a id="--theme9" class="dropdown-item">Gunmetal</a></li>
+                    </ul>
+                </div>
+
+                <div class="information">
+                    <button type="button" class="btn btn-primary" id="liveToastBtn">ⓘ</button>
+
+                    <div class="toast-container position-fixed end-0 p-3">
+                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+                            data-bs-autohide="false">
+                            <div class="toast-header">
+                                <strong class="me-auto">Pomodoro</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                La técnica Pomodoro es un método para mejorar la administración del tiempo dedicado a
+                                una actividad. <br><br>
+                                Consiste en usar un temporizador para dividir el tiempo en intervalos fijos, llamados
+                                <i>pomodoros</i>, de 25 minutos de actividad, seguidos de 5 minutos de descanso, con
+                                pausas más largas cada cuatro pomodoros. <br><br>
+                                <a target="_blank" href="https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro">Más información</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="progres-container">
                 <div class="state"></div>
-                
+
                 <div class="circular-progress">
                     <span class="minutes">25</span>
                     <span class="colon">:</span>
