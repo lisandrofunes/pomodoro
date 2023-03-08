@@ -45,6 +45,14 @@ let circularProgress = document.querySelector(".circular-progress"),
     
     min = 25, sec = 0;
 
+var soundStart = new Audio();
+soundStart.src = "/sounds/notification-start.mp3";
+var soundEnd = new Audio();
+soundEnd.src = "/sounds/notification-end.mp3";
+var soundFinish = new Audio();
+soundFinish.src = "/sounds/notification-finish.mp3";
+
+
 function preStarter(){
     const btnPause = document.createElement('button');
     btnPause.className = 'button btnPause';
@@ -66,6 +74,7 @@ function preStarter(){
 function start(){
     isBreakTime = false
     updateState('En Ejecución');
+    soundStart.play();
     run(0, 1500, 25, false, "progres", 0.24, 2);
 }
 
@@ -103,16 +112,21 @@ function breakTime(){
     if(cicle < 4){
         isBreakTime = true;
         updateState('Descanso');
+        soundEnd.play()
         run(0, 300, 5, false, "breakTime", 1.2, 1);
         cicle++;
     }else{
         isUltimateBreakTime = true;
         updateState('Último Descanso');
+        soundEnd.play()
         run(0, 900, 15, false, "breakTime", 0.4, 3);
     }
 }
 
 function run(startValue, endValue, minTotal, paused, color, degrees, nextFunction){
+
+    // isBreakTime ? soundEnd.play() : soundStart.play();
+
 
     let progressStartValue = startValue,
         progressEndValue = endValue;
@@ -149,6 +163,7 @@ function run(startValue, endValue, minTotal, paused, color, degrees, nextFunctio
                         break;
                     case 3:
                         updateState('Ciclo completado');
+                        soundFinish.play();
                         const btnPause = document.querySelector(".btnPause");
                         btnPause.style.display = 'none';
                         break;
