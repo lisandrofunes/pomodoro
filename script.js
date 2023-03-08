@@ -46,11 +46,11 @@ let circularProgress = document.querySelector(".circular-progress"),
     min = 25, sec = 0;
 
 var soundStart = new Audio();
-soundStart.src = "/sounds/notification-start.mp3";
+soundStart.src = "./sounds/notification-start.mp3";
 var soundEnd = new Audio();
-soundEnd.src = "/sounds/notification-end.mp3";
+soundEnd.src = "./sounds/notification-end.mp3";
 var soundFinish = new Audio();
-soundFinish.src = "/sounds/notification-finish.mp3";
+soundFinish.src = "./sounds/notification-finish.mp3";
 
 
 function preStarter(){
