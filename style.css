@@ -37,10 +37,10 @@
 }
 
 [data-theme="--theme6"] {
-    --background: #FF7F50;
-    --progres: #5e91bb;
-    --breakTime: #0080af;
-    --progresLight: hsla(207, 41%, 55%, 0.3);
+    --background: #f78e69;
+    --progres: #fbcdbd;
+    --breakTime: #087196;
+    --progresLight: hsla(15, 89%, 86%, 0.3);
 }
 
 [data-theme="--theme7"] {
@@ -94,6 +94,13 @@ body {
     right: 1em;
     display: flex;
     gap: 1em;
+}
+
+.color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
 }
 
 .progres-container {
@@ -233,6 +240,11 @@ body {
 
 .dropdown-item {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5em 1em;
+    border-bottom: 1px solid #efefef;
 }
 
 #liveToastBtn {
@@ -345,6 +357,22 @@ body {
     width: 0%;
     background: var(--breakTime);
     transition: all 300ms ease;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: black;
+    color: white;
+}
+
+.footer a{
+    color: var(--progres);
+    text-decoration: none;
+    margin-left: 3pt;
 }
 
 @media screen and (max-width: 425px) {
