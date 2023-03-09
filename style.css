@@ -1,55 +1,67 @@
-[data-theme="--theme1"], [data-theme="--default"]{
-    --background:#d9e1d4;
+[data-theme="--theme1"],
+[data-theme="--default"] {
+    --background: #d9e1d4;
     --progres: #93c175;
     --breakTime: #a06cd5;
+    --progresLight: rgba(147, 193, 117, 0.3);
 }
 
-[data-theme="--theme2"]{
-    --background:#FFE381;
+[data-theme="--theme2"] {
+    --background: #FFE381;
     --progres: #cbaf4d;
     --breakTime: #2a9a5d;
+    --progresLight: rgba(203, 176, 77, 0.3);
+
 }
 
-[data-theme="--theme3"]{
-    --background:#E8B4BC;
+[data-theme="--theme3"] {
+    --background: #E8B4BC;
     --progres: #ae6b75;
     --breakTime: #51948a;
+    --progresLight: hsla(351, 29%, 55%, 0.3);
+
 }
 
-[data-theme="--theme4"]{
-    --background:#60d394;
+[data-theme="--theme4"] {
+    --background: #60d394;
     --progres: #2a9a5d;
     --breakTime: #d9e1d4;
+    --progresLight: hsla(147, 57%, 38%, 0.3);
 }
 
-[data-theme="--theme5"]{
-    --background:#A3CEF1;
+[data-theme="--theme5"] {
+    --background: #A3CEF1;
     --progres: #5e91bb;
     --breakTime: #a16e44;
+    --progresLight: hsla(207, 41%, 55%, 0.3);
 }
 
-[data-theme="--theme6"]{
-    --background:#FF7F50;
-    --progres: #ffbca4;
+[data-theme="--theme6"] {
+    --background: #FF7F50;
+    --progres: #5e91bb;
     --breakTime: #0080af;
+    --progresLight: hsla(207, 41%, 55%, 0.3);
 }
 
-[data-theme="--theme7"]{
-    --background:#a06cd5;
+[data-theme="--theme7"] {
+    --background: #a06cd5;
     --progres: #c8aae7;
     --breakTime: #60d394;
+    --progresLight:hsla(270, 56%, 79%, 0.3);
 }
 
-[data-theme="--theme8"]{
-    --background:#456990;
+[data-theme="--theme8"] {
+    --background: #456990;
     --progres: #bfcfe1;
     --breakTime: #ba966f;
+    --progresLight: hsla(212, 36%, 82%, 0.3);
 }
 
-[data-theme="--theme9"]{
-    --background:#30343F;
+[data-theme="--theme9"] {
+    --background: #30343F;
     --progres: #788099;
     --breakTime: #2a9a5d;
+    --progresLight: hsla(225, 14%, 54%, 0.3);
 }
 
 :root {
@@ -57,7 +69,7 @@
     --shadow-inset: inset -4px -4px 6px hsla(0, 0%, 100%, 0.25), inset 6px 6px 6px #0000001a;
 }
 
-body{
+body {
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -76,7 +88,7 @@ body{
     position: relative;
 }
 
-.menu-container{
+.menu-container {
     position: absolute;
     top: 1em;
     right: 1em;
@@ -85,7 +97,7 @@ body{
     gap: 1em;
 }
 
-.progres-container{
+.progres-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -95,7 +107,7 @@ body{
     gap: 3em;
 }
 
-.selector{
+.selector {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -130,17 +142,17 @@ body{
     background-color: var(--background);
     box-shadow: var(--shadow);
     transition: 1s;
-    
+
 }
 
-.circular-progress span{
+.circular-progress span {
     color: var(--progres);
     position: relative;
     font-size: 5em;
     font-weight: 600;
 }
 
-.state{
+.state {
     position: absolute;
     top: -2em;
     transition: 1s;
@@ -155,6 +167,7 @@ body{
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: .5;
     }
@@ -162,7 +175,7 @@ body{
 
 @keyframes rotate {
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
@@ -173,7 +186,7 @@ body{
     color: #606060;
 }
 
-.theme-selector{
+.theme-selector {
     background: var(--background);
     border: none;
     border: 1px solid var(--progres);
@@ -182,11 +195,12 @@ body{
     padding: 0.5em;
 }
 
-.theme-selector:focus-visible{
+.theme-selector:focus-visible {
     outline: none;
 }
 
-.dropdown-center button, #liveToastBtn{
+.dropdown-center button,
+#liveToastBtn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,17 +215,18 @@ body{
     transition: 1s;
 }
 
-.dropdown-center button::before{
+.dropdown-center button::before {
     position: absolute;
     content: "";
     width: 22px;
     height: 22px;
-    background: linear-gradient(90deg, var(--background)50%, rgba(148,187,233,0) 50%);
+    background: linear-gradient(90deg, var(--background)50%, rgba(148, 187, 233, 0) 50%);
     border-radius: 50% 25% 25% 50% / 50% 0% 0% 50%;
     z-index: 1;
 
 }
-.dropdown-center button::after{
+
+.dropdown-center button::after {
     position: absolute;
     content: "";
     width: 30px;
@@ -220,23 +235,23 @@ body{
     border-radius: 50%;
 }
 
-.dropdown-item{
+.dropdown-item {
     cursor: pointer;
 }
 
-#liveToastBtn{
+#liveToastBtn {
     color: var(--progres);
     font-size: 2em;
     font-weight: bolder;
 }
 
-#liveToast{
+#liveToast {
     font-size: 1em;
     background-color: rgba(255, 255, 255, 0.9);
     border: none;
 }
 
-.controls{
+.controls {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,7 +259,7 @@ body{
     gap: 2em;
 }
 
-.button{
+.button {
     border-radius: 20px;
     border: none;
     font-size: 1.5em;
@@ -257,62 +272,125 @@ body{
     box-shadow: var(--shadow);
 }
 
-/* .button::after{
-    position: absolute;
-    content: "";
-    padding: .2em 0;
-    border-radius: 20px;
-    border: none;
-    width: 150px;
-    height: 50px;
-    height: inherit;
-    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.102);
-} */
-
-.button:hover{
+.button:hover {
     animation: shadowIn .2s;
     box-shadow: var(--shadow-inset)
 }
 
 
 @keyframes shadow {
-    0% { box-shadow: var(--shadow-inset)}
-    50% { box-shadow: none;}
-    100% { box-shadow: var(--shadow);}
+    0% {
+        box-shadow: var(--shadow-inset)
+    }
+
+    50% {
+        box-shadow: none;
+    }
+
+    100% {
+        box-shadow: var(--shadow);
+    }
 }
 
 @keyframes shadowIn {
-    0% { box-shadow: var(--shadow);}
-    50% { box-shadow: none;}
-    100% { box-shadow: var(--shadow-inset);}
+    0% {
+        box-shadow: var(--shadow);
+    }
+
+    50% {
+        box-shadow: none;
+    }
+
+    100% {
+        box-shadow: var(--shadow-inset);
+    }
 }
 
 @media screen and (max-width: 425px) {
-    .circular-progress span{
+    .progres-container{
+        gap: 2em;
+    }
+    
+    .circular-progress span {
         font-size: 3em;
     }
-    .state{
+
+    .state {
         font-size: 2.5em;
     }
-    .controls{
+
+    .controls {
         gap: 1.5em;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .circular-progress span{
+    .circular-progress span {
         font-size: 3.5em;
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .circular-progress span{
+    .circular-progress span {
         font-size: 4em;
     }
 }
 
 @media screen and (min-width: 1025px) {
-    .circular-progress span{
+    .circular-progress span {
         font-size: 5em;
     }
+}
+
+.steps {
+    display: flex;
+    width: 26vw;
+    max-width: 500px;
+    min-width: 300px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.steps .step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    color: var(--progresLight);
+    font-size: 22px;
+    font-weight: bolder;
+    border-radius: 50%;
+    background: var(--background);
+
+    /* box-shadow: -4px -4px 6px hsla(0, 0%, 100%, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.102); */
+
+    border: 4px solid var(--progresLight);
+    transition: all 200ms ease;
+    transition-delay: 0s;
+    /* opacity: .3; */
+    z-index: 1;
+}
+
+.steps .step.active {
+    transition-delay: 100ms;
+    border-color: var(--breakTime);
+    color: var(--breakTime);
+    opacity: 1;
+}
+
+.steps .progress-bar {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: var(--progresLight);
+}
+
+.progress-bar .indicator {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background: var(--breakTime);
+    transition: all 300ms ease;
 }

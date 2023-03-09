@@ -28,6 +28,8 @@ const setTheme = (theme) => {
 
 setTheme(localStorage.getItem('theme'))
 
+const step = document.querySelectorAll(".step"),
+  progressBar = document.querySelector(".indicator");
 
 let circularProgress = document.querySelector(".circular-progress"),
     progressValue = document.querySelector(".progress-value"),
@@ -37,7 +39,7 @@ let circularProgress = document.querySelector(".circular-progress"),
     btnStart = document.querySelector(".button"),
     state = document.querySelector(".state"),
 
-    speed = 1000,
+    speed = 1,
     isPaused = false,
     isBreakTime = false,
     isUltimateBreakTime = false,
@@ -75,7 +77,9 @@ function start(){
     isBreakTime = false
     updateState('En Ejecución');
     soundStart.play();
+    // circles.className = 'circle active';
     run(0, 1500, 25, false, "progres", 0.24, 2);
+
 }
 
 function pause(){
@@ -109,6 +113,9 @@ function restart(){
 
 function breakTime(){
 
+    step[cicle - 1].classList.add("active");
+    progressBar.style.width = `${((cicle - 1) / (step.length - 1)) * 100}%`;
+
     if(cicle < 4){
         isBreakTime = true;
         updateState('Descanso');
@@ -124,9 +131,6 @@ function breakTime(){
 }
 
 function run(startValue, endValue, minTotal, paused, color, degrees, nextFunction){
-
-    // isBreakTime ? soundEnd.play() : soundStart.play();
-
 
     let progressStartValue = startValue,
         progressEndValue = endValue;
