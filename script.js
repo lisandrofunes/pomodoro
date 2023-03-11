@@ -39,7 +39,7 @@ let circularProgress = document.querySelector(".circular-progress"),
     btnStart = document.querySelector(".button"),
     state = document.querySelector(".state"),
 
-    speed = 1000,
+    speed = 1,
     isPaused = false,
     isBreakTime = false,
     isUltimateBreakTime = false,
