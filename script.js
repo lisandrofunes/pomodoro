@@ -1,5 +1,5 @@
 //set default theme
-if(localStorage.getItem('theme') == null ){
+if (localStorage.getItem('theme') == null) {
     localStorage.setItem('theme', '--default');
 }
 // console.log(localStorage.getItem('theme'))
@@ -9,13 +9,13 @@ var items = document.querySelectorAll(".dropdown-item"),
     tab = [], index;
 
 // add values to the array
-for(var i = 0; i < items.length; i++){
+for (var i = 0; i < items.length; i++) {
     tab.push(items[i].innerHTML);
 }
 
 // get selected element index
-for(var i = 0; i < items.length; i++){
-    items[i].onclick = function(){
+for (var i = 0; i < items.length; i++) {
+    items[i].onclick = function () {
         setTheme(this.id)
     };
 }
@@ -29,7 +29,7 @@ const setTheme = (theme) => {
 setTheme(localStorage.getItem('theme'))
 
 const step = document.querySelectorAll(".step"),
-  progressBar = document.querySelector(".indicator");
+    progressBar = document.querySelector(".indicator");
 
 let circularProgress = document.querySelector(".circular-progress"),
     progressValue = document.querySelector(".progress-value"),
@@ -38,13 +38,14 @@ let circularProgress = document.querySelector(".circular-progress"),
     controls = document.querySelector(".controls"),
     btnStart = document.querySelector(".button"),
     state = document.querySelector(".state"),
+    progresContainer = document.querySelector(".progres-container"),
 
     speed = 1000,
     isPaused = false,
     isBreakTime = false,
     isUltimateBreakTime = false,
     cicle = 1,
-    
+
     min = 25, sec = 0;
 
 var soundStart = new Audio();
@@ -55,7 +56,7 @@ var soundFinish = new Audio();
 soundFinish.src = "sounds/notification-finish.mp3";
 
 
-function preStarter(){
+function preStarter() {
     const btnPause = document.createElement('button');
     btnPause.className = 'button btnPause';
     btnPause.innerHTML = 'Pausa';
@@ -72,57 +73,61 @@ function preStarter(){
 
     start();
 }
-    
-function start(){
-    isBreakTime = false
-    updateState('En Ejecución');
-    soundStart.play();
-    // circles.className = 'circle active';
-    run(0, 1500, 25, false, "progres", 0.24, 2);
 
+function start() {
+    isBreakTime = false
+
+    progresContainer.setAttribute('style', 'top: 3em; animation: .5s ease-in-out desplazamiento')
+
+    circularProgress.setAttribute('style', 'transform: scale(1); transition-duration: 1s;')
+   
+    updateState('En Ejecución');
+
+    soundStart.play();
+
+    run(0, 1500, 25, false, "progres", 0.24, 2);
 }
 
-function pause(){
-    isPaused=true;
-    
+function pause() {
+    isPaused = true;
+
     const btnResume = document.querySelector(".btnPause");
     btnResume.innerHTML = 'Reanudar';
     btnResume.setAttribute("onclick", "resume()");
 
     updateState('En Pausa');
-
 }
 
-function resume(){
-    if(isUltimateBreakTime){
+function resume() {
+    if (isUltimateBreakTime) {
         updateState('Último Descanso')
-    }else{
-        isBreakTime ? updateState('Descanso'): updateState('En Ejecución');
+    } else {
+        isBreakTime ? updateState('Descanso') : updateState('En Ejecución');
     }
 
-    isPaused=false;
+    isPaused = false;
 
     const btnPause = document.querySelector(".btnPause");
     btnPause.innerHTML = 'Pausa';
     btnPause.setAttribute("onclick", "pause()")
 }
 
-function restart(){
+function restart() {
     location.reload();
 }
 
-function breakTime(){
+function breakTime() {
 
     step[cicle - 1].classList.add("active");
     progressBar.style.width = `${((cicle - 1) / (step.length - 1)) * 100}%`;
 
-    if(cicle < 4){
+    if (cicle < 4) {
         isBreakTime = true;
         updateState('Descanso');
         soundEnd.play()
         run(0, 300, 5, false, "breakTime", 1.2, 1);
         cicle++;
-    }else{
+    } else {
         isUltimateBreakTime = true;
         updateState('Último Descanso');
         soundEnd.play()
@@ -130,17 +135,17 @@ function breakTime(){
     }
 }
 
-function run(startValue, endValue, minTotal, paused, color, degrees, nextFunction){
+function run(startValue, endValue, minTotal, paused, color, degrees, nextFunction) {
 
     let progressStartValue = startValue,
         progressEndValue = endValue;
-    
+
     min = minTotal
 
     isPaused = paused
     let progress = setInterval(() => {
 
-        if(!isPaused){
+        if (!isPaused) {
             progressStartValue++;
 
             if (sec === 0) {
@@ -155,10 +160,10 @@ function run(startValue, endValue, minTotal, paused, color, degrees, nextFunctio
             //360°/60=6 por segundo aumenta 6° - 360°/(25*60)=0.24
             circularProgress.style.background = `conic-gradient(var(--${color}) ${progressStartValue * degrees}deg, transparent 0deg)`
 
-            if(progressStartValue == progressEndValue){
+            if (progressStartValue == progressEndValue) {
                 clearInterval(progress);
 
-                switch(nextFunction){
+                switch (nextFunction) {
                     case 1:
                         start();
                         break;
@@ -172,17 +177,17 @@ function run(startValue, endValue, minTotal, paused, color, degrees, nextFunctio
                         btnPause.style.display = 'none';
                         break;
                 }
-            }    
+            }
         }
     }, speed);
 }
 
-function updateState(text){
+function updateState(text) {
     state.innerHTML = text;
     state.animate([
         { opacity: '0' },
         { opacity: '.5' }
-      ], {
+    ], {
         duration: 1000,
     });
 }
@@ -190,9 +195,9 @@ function updateState(text){
 const toastTrigger = document.getElementById('liveToastBtn')
 const toastLiveExample = document.getElementById('liveToast')
 if (toastTrigger) {
-  toastTrigger.addEventListener('click', () => {
-    const toast = new bootstrap.Toast(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExample)
 
-    toast.show()
-  })
+        toast.show()
+    })
 }

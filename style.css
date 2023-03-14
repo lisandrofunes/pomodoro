@@ -79,8 +79,7 @@ body {
 }
 
 .container {
-    width: 100vw;
-    height: 100vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,6 +131,7 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow-inset);
+    transform: scale(0.8);
 }
 
 .circular-progress::before {
@@ -166,22 +166,6 @@ body {
     color: var(--progres);
     opacity: .5;
     animation: state 1s;
-}
-
-@keyframes state {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: .5;
-    }
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 .text {
@@ -280,7 +264,7 @@ body {
     box-shadow: var(--shadow);
 }
 
-.button:hover {
+.button:active {
     animation: shadowIn .2s;
     box-shadow: var(--shadow-inset)
 }
@@ -306,6 +290,15 @@ body {
     }
     100% {
         box-shadow: var(--shadow-inset);
+    }
+}
+
+@keyframes desplazamiento {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 3em;
     }
 }
 
@@ -360,11 +353,11 @@ body {
 }
 
 .footer{
+    height: 5vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1em;
     background-color: black;
     color: white;
 }
