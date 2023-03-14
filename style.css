@@ -210,7 +210,6 @@ body {
     background: linear-gradient(90deg, var(--background)50%, rgba(148, 187, 233, 0) 50%);
     border-radius: 50% 25% 25% 50% / 50% 0% 0% 50%;
     z-index: 1;
-
 }
 
 .dropdown-center button::after {
